@@ -1,0 +1,29 @@
+{% load i18n %}
+<div class="panel panel-default">
+    <div class="panel-heading">  <b>{% trans "Devices" %} </b></div>
+    <div class="panel-body">
+      
+      <div class="diskicon"> {% trans "Disks" %} </div>
+
+
+      <div class="interfaceicon"> {% trans "Network Interfaces" %} </div>
+
+      <div class="graphicsicon"> {% trans "Graphics" %} </div>
+
+      <div class="inputicon"> {% trans "Inputs" %} </div>
+
+      <div class="consoleicon"> {% trans "Console" %}</div>
+
+      <div class="serialicon"> {% trans "Serial" %} </div>
+
+      <div class="emulatoricon"> {% trans "Emulator" %} </div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading xmlicon"> <b>{% trans "XML" %}</b></div>
+    <div class="panel-body">
+        <pre style="font-size: 11px;">{{ object.capabilities }}</pre>
+    </div>
+</div>
+            

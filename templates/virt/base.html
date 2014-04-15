@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load i18n %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="Virtual Machine Management">
+    <meta name="author" content="Thiago Montenegro">
+    <link rel="shortcut icon" href="{{STATIC_URL}}images/favicon.ico">
+
+    <title>Virttool</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{STATIC_URL}}bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{{STATIC_URL}}bootstrap/css/navbar-fixed-top.css" rel="stylesheet">
+    <link href="{{STATIC_URL}}css/custom.css" rel="stylesheet">
+    <link href="{{STATIC_URL}}css/icons.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="{{STATIC_URL}}bootstrap/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    {% block extrahead %}{% endblock %}
+</head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url "home" %}"><img src="{{STATIC_URL}}images/virttool.png"/> &nbsp; Virttool</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li id="nodeop"><a href="{% url "node_list" %}">{% trans "Nodes" %}</a></li>
+                <li id="domainop"><a href="{% url "domain_list" %}">{% trans "Domains" %}</a></li>
+                <li id="clusterop"><a href="{% url "cluster_status" %}">{% trans "Cluster" %}</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            {% if user.is_authenticated %}
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <b> {{ user.username|capfirst }} </b> <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url "sys_logout" %}"> {% trans "Logout" %}</a> </li>    
+                        <li class="divider"></li>
+                        <li class="dropdown-header">Tools</li>
+                        <li><a href="#">History</a></li>
+                    </ul>
+                </li>
+            {% endif %}
+            </ul>
+        <form class="navbar-form navbar-right" action="{% url "domain_list" %}">
+            <input type="text" style="font-size: 11px; height: 30px;" class="form-control" name="q" placeholder="Search...">
+        </form>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+
+            {% block messages %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-{{message.tags}}">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            {% endblock messages %}
+
+
+
+
+
+                {% block content %}{% endblock %}</div>
+
+        </div>
+        
+    </div> <!-- /container -->
+    <div id="ajax-indicator" style="display:none;"><span>{% trans "Carregando..." %}</span></div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{{STATIC_URL}}js/jquery.min.js"></script>
+    <script src="{{STATIC_URL}}js/base.js"></script>
+    <script src="{{STATIC_URL}}bootstrap/js/bootstrap.min.js"></script>
+
+    {% block extrajs %}{% endblock %}
+  </body>
+</html>

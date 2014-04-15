@@ -1,0 +1,4 @@
+#id_name, #id_uuid, #id_description,#id_bootloader {  width: 300px; }
+#id_memory, #id_currentMemory, #id_vcpus { width: 90px; }
+#id_os_kernel, #id_os_initrd, #id_os_cmdline { width: 300px;}
+#id_os_type, #id_os_loader { width: 300px; }

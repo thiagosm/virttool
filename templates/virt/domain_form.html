@@ -1,0 +1,69 @@
+{% extends "virt/base.html" %}
+{% load i18n %}
+{% load extras %}
+{% block extrahead %}
+    {{ form.media }}
+{% endblock %}
+
+{% block content %}
+
+    <div class="panel panel-default">
+        <div class="panel-heading">  
+            
+            {% if object %} <b>{% trans "Domain" %} {{object.name }}</b>
+
+             <div class="btn-group pull-right" style="bottom: 5px;">
+                
+            </div>
+            {% else %}
+                <b>{% trans "Create Domain" %}</b>
+            {% endif %}
+
+        </div>
+        <div class="panel-body">
+
+        <form class="formx" action="" method="post">
+            {% csrf_token %}
+            <fieldset>
+            {% include "utils/form_style3.html" with form=form %}
+            </fieldset>
+            
+            {% if object %}
+                <input class="btn btn-warning" type="submit" value="{% trans "Save" %}" />
+            {% else %}
+                <input class="btn btn-primary" type="submit" value="{% trans "Create" %}" />
+            {% endif %}
+        </form>
+
+
+        {% if object %} 
+            <br/>
+            {% include "virt/domain_devices.html" %}
+
+            
+          
+
+
+    <br/>
+    <br/>
+    <a class="glyphicon glyphicon-remove pull-right" title="{% trans "Remove Domain" %}" href="{% url "domain_delete" object.id %}" onclick="return confirm('Confirm Delete ?');">&nbsp;</a>
+
+        {% endif %}
+
+        </div>
+    </div>
+
+
+    {% block extrajs %}
+        {% if object %} 
+        <script type="text/javascript">
+            $(document).ready(function() { 
+               $('#domainop').addClass("active");
+            });
+            
+        </script>
+        {% endif %}
+    {% endblock %}
+
+
+{% endblock %}

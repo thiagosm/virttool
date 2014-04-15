@@ -1,0 +1,84 @@
+{% extends "virt/base.html" %}
+{% load i18n %}
+{% load extras %}
+{% block extrahead %}
+{{ form.media }}
+{% endblock %}
+
+{% block content %}
+
+    <div class="panel panel-default">
+        <div class="panel-heading">  
+            
+            {% if object %} <b>{% trans "Node" %} {{object.name }}</b>
+
+             <div class="btn-group pull-right" style="bottom: 5px;">
+                <a href="{% url "node_libvirt_updatedomains" object.id %}" class="btn btn-success" onclick="return confirm(' {% trans "Confirm Update Domains ?" %}');">{% trans "Update Domains" %}</a>
+                <a href="{% url "node_libvirt_update" object.id %}" class="btn btn-primary" onclick="return confirm(' {% trans "Confirm Update Libvirt ?" %}');">{% trans "Update Libvirt Capabilities" %}</a>
+            </div>
+            {% else %}
+                <b>{% trans "Create Node" %}</b>
+            {% endif %}
+
+        </div>
+        <div class="panel-body">
+
+        <form class="formx" action="" method="post">
+            {% csrf_token %}
+            <fieldset>
+            {% include "utils/form_style3.html" with form=form %}
+            </fieldset>
+            
+            {% if object %}
+                <input class="btn btn-warning" type="submit" value="{% trans "Save" %}" />
+            {% else %}
+                <input class="btn btn-primary" type="submit" value="{% trans "Create" %}" />
+            {% endif %}
+        </form>
+
+
+        {% if object %} 
+            <br/>
+            <div class="panel panel-success">
+                <div class="panel-heading"> {% trans "Domains" %} <span class="badge">{{object.domain_set.count}}</span> </div>
+                <div class="panel-body" id="node_domains">
+                    {% trans "Loading... " %} 
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading interfaceicon"> {% trans "Network Interfaces" %}</div>
+                <div class="panel-body">
+                    
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading xmlicon"> {% trans "XML" %}</div>
+                <div class="panel-body">
+                    <pre style="font-size: 11px;">{{ object.capabilities }}</pre>
+                </div>
+            </div>
+
+    <br/>
+    <br/>
+    <a class="glyphicon glyphicon-remove pull-right" title="{% trans "Remove Node" %}" href="{% url "node_delete" object.id %}" onclick="return confirm('Confirm Delete ?');">&nbsp;</a>
+
+        {% endif %}
+
+        </div>
+    </div>
+
+
+    {% block extrajs %}
+        {% if object %} 
+        <script type="text/javascript">
+            $(document).ready(function() { 
+                $('#node_domains').load('{% url "node_libvirt" object.id %}?format=node_libvirt_table');
+                $('#nodeop').addClass("active");
+            });
+            
+        </script>
+        {% endif %}
+    {% endblock %}
+
+
+{% endblock %}

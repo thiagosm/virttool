@@ -1,0 +1,50 @@
+{% load extras i18n %}
+{% if output_format == 'table' %}
+    <td> <a href="{% url "node_edit" object.id %}">{{ object.id }} </a></td>
+    <td> <a href="{% url "node_edit" object.id %}"> {{ object.name }}</a> </td>
+    <td> {{ object.hostname }} </td>
+    <td> {{ object_libvirt.0.getInfo.1 }} MB </td>
+    <td> {{ object_libvirt.0.getFreeMemory|memorysizeformat:"b" }} MB  </td>
+    <td> {{ object_libvirt.0.getInfo.2 }} </td>
+    <td> {% if object.type == 1 %}{{object_libvirt.0.numOfDomains}} {% else %}{{ object_libvirt.0.numOfDomains|ndomain }}{% endif %} </td> 
+    <td> {{ object_libvirt.0.getInfo.0 }} </td>
+    <td> {{ object.get_node_type_display }} </td>
+    <td> <a class="glyphicon glyphicon-edit" title="Editar" href="{% url "node_edit" object.id %}">&nbsp;</a> </td>
+{% endif %}
+
+{% if output_format == 'node_libvirt_table' %}
+
+        <a href="{% url "node_libvirt_createdomains" object.id %}" class="btn btn-info pull-right" onclick="return confirm(' {% trans "Confirm Create ALL Domains ?" %}');">{% trans "Create ALL" %}</a>
+        <table class="table table-hover table-condensed">
+        <thead>
+        <tr>
+            <th> {% trans "Name" %} </th>
+            <th> {% trans "Memory" %} </th>
+            <th> {% trans "Vcpus" %} </th>
+            <th> {% trans "OS Type" %} </th>
+            <th> {% trans "Domain-0" %} </th>
+            <th> {% trans "State" %} </th>
+            <th>  </th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for d in object.libvirtDomains %}
+            <tr>
+                <td> <a href="{% url "domain_edit" d.domain.id %}" title="{{d.domain.description}}">{{ d.domain.name }}</a></td>
+                <td> {{ d.libvirtdomain.0.info.1|memorysizeformat:"k" }} MB   </td>
+                <td> {{ d.libvirtdomain.0.maxVcpus }} </td>
+                <td> {{ d.libvirtdomain.0.OSType|capfirst }} </td>
+                <td> {{ d.domain.node }}</td>
+                <td> <span class="label {{d.libvirtdomain.0.info.0|libvirtstatelabel}}">{{ d.libvirtdomain.0.info.0|libvirtstate }}</span> </td>
+                <td> <a class="glyphicon glyphicon-edit" href="{% url "domain_edit" d.domain.id %}"></a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+
+
+   
+{% endif %}
+

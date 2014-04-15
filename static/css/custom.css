@@ -1,0 +1,217 @@
+
+
+body {
+    /*background: #FFF; */
+    background: #b7b7b7;
+
+   
+}
+
+table {
+    font: normal 80%/2.0em Verdana, Tahoma, Verdana, sans-serif;
+    line-height: 1.5em; 
+}
+
+/* 
+   Forms 
+------------------------------------------------------------------- */
+
+label {
+width: 100px;
+font-size: 12px;
+
+}
+
+input, select,textarea {
+border-top-width: 1px;
+border-right-width: 1px;
+border-bottom-width: 1px;
+border-left-width: 1px;
+border-top-style: solid;
+border-right-style: solid;
+border-bottom-style: solid;
+border-left-style: solid;
+border-top-color: #aaaaaa;
+border-right-color: #aaaaaa;
+border-bottom-color: #aaaaaa;
+border-left-color: #aaaaaa;
+margin-top: 1px;
+margin-right: auto;
+margin-bottom: auto;
+margin-left: auto;
+padding-top: 2px;
+padding-right: 1px;
+padding-bottom: 1px;
+padding-left: 2px;
+font: 13px Arial, Sans-serif; 
+
+}
+
+form.formx fieldset {
+    border: 0px;
+    
+}
+
+form.formx fieldset p {
+    list-style-type: none;
+    list-style-image: none;
+    list-style-position: outside;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    margin-top: 0pt;
+    margin-right: 0pt;
+    margin-bottom: 0pt;
+    margin-left: 0pt;
+}
+
+
+
+
+form.formx label {
+    display: inline-block;
+
+}
+
+form.formx label.error {
+padding-left: 10px;
+width: auto;
+color: red;
+font-weight: bold;
+font-size: 12px;
+}
+
+
+.fielderror {
+    color: red;
+    padding-left: 10px;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+
+input.button {
+    background: #FAFAFA;
+    border: 1px solid #AAA;
+    border-color: #DDD #AAA #AAA #EEE;
+    color: #444;
+    cursor: pointer;
+    font: normal 1em Verdana,sans-serif;
+    margin-top: 5px;
+    padding: 6px;
+    width: auto;
+}
+input:focus,input:active,textarea:focus,textarea:active,select:focus,select:active,input.button:hover,input.button:focus {background: #FFFFF5;}
+input.button:hover, input.button:focus {
+    color: #123;
+    cursor: pointer;
+}
+
+textarea {overflow: auto;}
+
+input.image {
+    border: 0;
+    padding: 0;
+}
+
+select { 
+    margin: 0; padding: 1px;
+    width: 120px;
+    border: 1px solid #CCC; 
+    background: #FFF;
+    color: #333; 
+}
+
+
+
+/* Messages */
+.error, .notice, .success {
+    border: 1px solid #DDD;
+    margin-bottom: 1em;
+    padding: 0.6em 0.8em;
+}
+
+.error {background: #FBE3E4; color: #8A1F11; border-color: #FBC2C4;}
+.error a {color: #8A1F11;}
+
+.notice {background: #FFF6BF; color: #514721; border-color: #FFD324;}
+.notice a {color: #514721;}
+
+.success {background: #E6EFC2; color: #264409; border-color: #C6D880;}
+.success a {color: #264409;}
+
+
+fieldset { 
+    border: 0px;
+}
+
+.fielderror {
+    color: red;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.errorlist {
+width: auto;
+color: red;
+font-weight: bold;
+font-size: 12px;
+}
+
+
+.help { 
+
+padding-left: 100px;
+vertical-align: middle;
+font-size: 11px;
+color: #999999;
+line-height: 140%;
+}
+
+
+
+/*=======================================
+            AJAX INDICATOR
+========================================*/
+#ajax-indicator {
+    position: absolute; /* fixed not supported by IE */
+    background-color: #ffffff;
+    border: 1px solid gray;
+    top:35%;
+    left:40%;
+    width:20%;
+    text-align:center;
+    font-size: 12px;
+    color: #464646;
+    padding:0.4em;
+    z-index: 99999;
+    filter:alpha(opacity=80);
+    opacity: 0.8;
+    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 1px 4px rgba(0,0,0,.2);
+    box-shadow: 0 1px 4px rgba(0,0,0,.2);
+     -moz-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+
+html>body #ajax-indicator {
+    position: fixed;
+}
+
+
+#ajax-indicator span {
+    background-position: 0% 40%;
+    background-repeat: no-repeat;
+    background-image: url(../images/loading.gif);
+    padding-left: 26px;
+    vertical-align: bottom;
+    font-size: 12px;
+    color: #000000;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+
+
