@@ -7,6 +7,6 @@ It uses libvirt for node management and a database for configuration storage, an
 When requiring high-avaliability or live migration functionality, it is necessary to also run the virttool daemon, at it is the daemon that coordinates virtual machine placement and resource management. 
 
 
-Virttool 1.x : https://code.google.com/p/virttool/ <br/>
+Virttool 0.2 : https://code.google.com/p/virttool/ <br/>
 Demo: 
 http://www.youtube.com/watch?v=hgSTc-ih66g
